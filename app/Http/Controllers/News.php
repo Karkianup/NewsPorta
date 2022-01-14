@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsDetail;
 use App\Models\User;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -23,7 +24,11 @@ class News extends Controller
 
     function create()
     {
-        return view('add_news');
+        $category=Category::all();
+        return view('add_news',[
+           "categories"=>$category,
+
+        ]);
     }
 
     function store(Request $req)
@@ -109,4 +114,13 @@ class News extends Controller
             return redirect('/')->with('message', 'You are not eligible to delete');
         }
     }
+
+    // function category(){
+    //    $category=Category::all();
+    //     return view('add_news',[
+    //          'category'=>$category,
+
+    //     ]);
+
+    // }
 }

@@ -16,6 +16,18 @@
                 @error('post')<div class="alert-danger">{{ "*".$message }}</div> @enderror
                 <textarea name="post" rows="9" cols="30" class="form-control" placeholder="Enter article"></textarea><br>
 
+                <select name="category_id" class="form-select">
+                      <option selected disabled> Choose news category</option>
+                        @foreach ($categories as $category)
+                      {{-- {{ $category->name }} --}}
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+                        @endforeach
+                    </select>
+
+
+                <br>
+
                 <input type="submit" value="Post" class="btn btn-success">
 
 

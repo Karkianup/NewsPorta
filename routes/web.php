@@ -29,3 +29,4 @@ Route::get('/news/{id}',[News::class,'show']);
 Route::get('/news/edit/{id}',[News::class,'edit'])->middleware('auth');
 Route::put('/news',[News::class,'update'])->middleware('auth');
 Route::get('/news/delete/{id}',[News::class,'destroy']);
+// Route::get('/news/create',[News::class,'category']);

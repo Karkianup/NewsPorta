@@ -19,6 +19,8 @@ class CreateNewsDetails extends Migration
             $table->string('image')->nullable();
             $table->string('post',700);
             $table->integer('user_id')->nullable();
+            $table->integer('category_id')->nullable();
+
             $table->timestamps();
         });
     }
