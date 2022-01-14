@@ -4,10 +4,10 @@
       <div class="row">
             <div class="col-8">
                  @if(auth()->check())
-                  @if(auth()->user()->id==$newsDetails->user_id)
-                     <a href={{"/news/delete/".$newsDetails->id}} style="position: absolute;left:60%;font-size:22px;text-decoration:none" class="btn btn-danger">Delete your Post</a>
-                     <a href={{"/news/edit/".$newsDetails->id}} style="position: absolute;left:44%;font-size:22px;text-decoration:none" class="btn btn-warning">Edit Your Post </a><br><br><br>
-                  @endif
+                     @if(auth()->user()->id==$newsDetails->user_id)
+                        <a href={{"/news/delete/".$newsDetails->id}} style="position: absolute;left:60%;font-size:22px;text-decoration:none" class="btn btn-danger">Delete your Post</a>
+                         <a href={{"/news/edit/".$newsDetails->id}} style="position: absolute;left:44%;font-size:22px;text-decoration:none" class="btn btn-warning">Edit Your Post </a><br><br><br>
+                      @endif
                   @endif
                     <h1 style="font-weight:bold;font-family:verdana;color:purple;text-decoration:underline;font-size:54px;">{{$newsDetails->title  }}</h1><br>
                     <img src="{{asset('images/'.$newsDetails->image)}}" width="400px" height="200px" style="border-radius:30px"><br><br>
@@ -17,9 +17,9 @@
 
 
 
+            </div>
 
-     </div>
-
-   </div>
+        </div>
+    </div>
 
 @endsection
