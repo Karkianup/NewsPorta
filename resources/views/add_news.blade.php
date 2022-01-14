@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <center>
-   @if(session('message'))  {{ session('message') }}@endif
+   @if(session('message')) <div class="alert-success"> {{ session('message') }} </div>@endif<br>
     <form action="/news" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="container addNews">

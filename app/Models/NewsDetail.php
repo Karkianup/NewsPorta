@@ -15,7 +15,8 @@ class NewsDetail extends Model
          'title',
          'image',
          'post',
-         'user_id'
+         'user_id',
+         'category_id',
 
     ];
 

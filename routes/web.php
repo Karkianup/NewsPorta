@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\HomePage;
 use App\Http\Controllers\News;
+use App\Http\Controllers\NewsCategory;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Relations;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+ Route::get('/',[NewsCategory::class,'show']);
 Route::get('/',[HomePage::class,'index']);
 Route::get('/',[News::class,'index']);
 Route::get('/news/create',[News::class,'create'])->middleware('auth');
@@ -29,4 +30,3 @@ Route::get('/news/{id}',[News::class,'show']);
 Route::get('/news/edit/{id}',[News::class,'edit'])->middleware('auth');
 Route::put('/news',[News::class,'update'])->middleware('auth');
 Route::get('/news/delete/{id}',[News::class,'destroy']);
-// Route::get('/news/create',[News::class,'category']);

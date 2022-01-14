@@ -15,9 +15,11 @@ class News extends Controller
     function index()
     {
         $newsDetails = NewsDetail::all();
+        $category=Category::all();
 
         return view('home_page', [
             "newsDetails" => $newsDetails,
+            "categories"=>$category
         ]);
     }
 
@@ -37,7 +39,8 @@ class News extends Controller
             "title" => "required | string | max:255 | min:2",
             "post" => "required",
             "image" => "required",
-        ]);
+            "category_id"=>"required",
+            ]);
 
         $newsDetail = NewsDetail::create($req->all());
         if ($req->hasFile('image')) {
