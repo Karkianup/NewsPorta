@@ -3,7 +3,7 @@
     <div class="container addNews">
         <div class="row">
             <div class="col-4">
-                   @if (session('message')) <div class="alert-danger">{{ session('message') }}</div> @endif
+                   @if (session('message')) <div class="alert alert-primary">{{ session('message') }}</div> @endif
 
                 <form action="/news" method="POST">
                         @method('put')
