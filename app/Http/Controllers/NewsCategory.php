@@ -11,28 +11,33 @@ class NewsCategory extends Controller
     function show(Request $req){
             $newsArticle=NewsDetail::where('category_id',$req->searchCategory)->get();
             $category=Category::all();
+      if(isset($_POST["newsFilter"])){
+
               if(count($newsArticle)){
-            return view('home_page',[
-              "newsArticles"=>$newsArticle,
-              "categories"=>$category,
-            ]);
+            // return view('home_page',[
+            //   "newsArticles"=>$newsArticle,
+            //   "categories"=>$category,
+            // ]);
+            return $newsArticle;
             }else{
                 return "nothing to display";
 
-            }
+                  }            }
 }
     function showPublisherArticle(Request $req){
-            // $publisherArticle=NewsDetail::where('user_id',$req->user_id)->get();
+      if(isset($_POST["searchLoggedUserArticle"])){
+            $publisherArticle=NewsDetail::where('user_id',$req->user_id)->get();
+            $category=Category::all();
 
-            // return view('home_page',[
-            //  "publisherArticles"=>$publisherArticle,
-            // ]);
-            echo"Hello my name is shila";
+            // return $publisherArticle;
 
+            return view('home_page',[
+             "newsArticles"=>$publisherArticle,
+             "categories"=>$category,
+            ]);
 
-
-
-    }
+      }
+            }
 
 
 }

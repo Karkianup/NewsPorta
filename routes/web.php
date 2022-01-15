@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/',[NewsCategory::class,'show']);
-Route::post('/show/logged/user/article',[NewsCategory::class,'showPublisherArticle']);
+Route::post('/',[NewsCategory::class,'showPublisherArticle']);
 Route::get('/',[HomePage::class,'index']);
 Route::get('/',[News::class,'index']);
 Route::get('/news/create',[News::class,'create'])->middleware('auth');

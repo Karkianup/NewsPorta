@@ -37,7 +37,7 @@ class News extends Controller
     {
         $req->validate([
             "title" => "required | string | max:255 | min:2",
-            "post" => "required",
+            "post" => "required|max:17000",
             "image" => "required",
             "category_id"=>"required",
             ]);
