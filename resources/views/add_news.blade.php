@@ -8,7 +8,7 @@
            <div class="row">
              <div class="col-4">
                    @error('title')<div class="alert-danger">{{ "*".$message }}</div> @enderror
-                <input type="text" name="title" placeholder="enter title of your news" class="form-control"><br>
+                <input type="text" name="title" placeholder="enter title of your news" class="form-control" value="{{ old('title') }}"><br>
 
                 @error('image')<div class="alert-danger">{{ "*".$message }}</div> @enderror
                 <input type="file" name="image" placeholder="enter title of your news" class="form-control"><br>
