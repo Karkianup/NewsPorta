@@ -3,18 +3,18 @@
 
          <a href="news/create"  class="btn btn-info" style="position:absolute;right:1%;font-weight:bold;font-size:23px;text-decoration:none;color:black">Post Article</a><br>
 
-         <form action="/" method="get">
+         <form action="/" method="POST">
             @csrf
                 <select name="searchCategory">
                      <option selected disabled>filter</option>
-                        @foreach ($categories as $category)
+                        {{-- @foreach ($categories as $category)
                             <option value="{{ $category->category_id }}">{{ $category->id }}</option>
 
-                        @endforeach
-                            {{-- <option value="1">1</option>
+                        @endforeach --}}
+                            <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="4">4</option> --}}
+                            <option value="4">4</option>
 
                 </select>
                 <input type="submit" value="submit" name="newsFilter">
@@ -42,8 +42,7 @@
             </div>
 
          </div> --}}
-              {{ $a="anupa"
-              return  $a;}}
+           {{ "My name is Bhagya neupane" }}
 
          @else
 
@@ -72,5 +71,5 @@
             </div>
 
          </div>
-         @endif
+        @endif
 @endsection

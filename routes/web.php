@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
- Route::get('/',[NewsCategory::class,'show']);
+ Route::post('/',[NewsCategory::class,'show']);
 Route::get('/',[HomePage::class,'index']);
 Route::get('/',[News::class,'index']);
 Route::get('/news/create',[News::class,'create'])->middleware('auth');

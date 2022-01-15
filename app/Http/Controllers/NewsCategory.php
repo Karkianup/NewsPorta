@@ -10,11 +10,11 @@ class NewsCategory extends Controller
 {
     function show(Request $req){
          if(isset($_POST['newsFilter'])){
-         $Category=NewsDetail::where('category_id',$req->searchCategory)->get();
-         return view('home_page',[
-           "categories"=>$Category,
+            $Category=NewsDetail::where('category_id',$req->searchCategory)->get();
+            return view('home_page',[
+            "categories"=>$Category,
 
-         ]);
+            ]);
 
         }
 
