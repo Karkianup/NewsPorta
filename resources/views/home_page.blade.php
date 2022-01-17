@@ -1,48 +1,47 @@
 @extends('layouts.app')
 @section('content')
 
-         <a href="news/create"  class="btn btn-dark" style="position:absolute;right:1%;font-weight:bold;font-size:33px;text-decoration:none;color:WHITE">+</a><br>
+        <a href="news/create"  class="btn btn-dark" style="position:absolute;right:1%;font-weight:bold;font-size:23px;text-decoration:none;color:WHITE">+</a><br>
 
          {{-- For search news using category --}}
-         <form action="/" method="GET">
-                <select name="searchCategory">
-                     <option selected disabled>filter</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                </select>
-                <input type="submit" value="search" class="btn btn-primary">
-         </form>
+        <form action="/" method="GET" class="searchCategory">
+            <select name="searchCategory">
+                <option selected disabled>filter</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+            </select>
+            <input type="submit" value="search" class="btn btn-primary">
+        </form>
          {{-- search using search field --}}
-         <form action="/" method="GET">
-              <input type="text" name="searchBar" placeholder="enter title">
-             <input type="submit" value="search" class="btn btn-primary">
-     </form>
+        <form action="/" method="GET" class="searchBar">
+            <input type="text" name="searchBar" placeholder="enter title">
+            <input type="submit" value="search" class="btn btn-primary">
+        </form><br><br>
 
-         @if (session('message'))
+        @if (session('message'))
               <div class="alert alert-primary" style="text-align:center">{{ session('message') }}</div>
-         @endif
+        @endif
 
 
 
-             <div class="container">
-                <div class="row">
-                    <div class="col-11">
-                        <div class="card">
-                                <div class="card-body">
-                            @foreach ($newsDetails as $d)
-                                <a href={{ "/news/". $d->id }} style="text-decoration: none">
-                                <h1 style="color:Black;font-weight:bold">{{ $d->title }}</h1> <br>
-                                <img src={{"images/".$d->image  }} width="500px" height="300px"><br><br>
-                                <hr style="width:1000px;height:6px;">
-                                </a>
-                            @endforeach
-                                </div>
+    <div class="container">
+        <div class="row">
+            @foreach ($newsDetails as $d)
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href={{ "/news/". $d->id }} style="text-decoration: none">
+                            <h1 style="color:Black;font-weight:bold">{{ $d->title }}</h1>
+                            <img src={{"images/".$d->image  }} width="100%" height="300px">
+                            </a>
+
                         </div>
-
                     </div>
 
                 </div>
+            @endforeach
+        </div>
 
-             </div>
+    </div>
  @endsection

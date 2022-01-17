@@ -1,7 +1,6 @@
-
 .addNews{
   position: absolute;
-  left:35%;
+  left:22%;
 
 }
 .searchLoggedUserArticleButton{
@@ -9,4 +8,17 @@
  left:45%;
  top:13vh;
 
+}
+/* for homepage SearchBar */
+.searchBar{
+    position: absolute;
+    top:11vh;
+    left:44%;
+
+}
+/* for homepage filter */
+.searchCategory{
+    position: absolute;
+    top:11vh;
+    left:14%;
 }
