@@ -17,14 +17,13 @@ use App\Http\Controllers\Relations;
 |
 */
 Auth::routes();
-// Route::get('/',[Relations::class,'posterName']);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/display/category',[NewsCategory::class,'category']);
 Route::get('/',[HomePage::class,'index']);
 // Route::get('/',[News::class,'index']);
-Route::get('/user/posts',[News::class,'myPosts'])->middleware('auth');
+Route::get('/user/posts',[News::class,'myPosts'])->name('posts')->middleware('auth');
 
 Route::get('/news/create',[News::class,'create'])->middleware('auth');
 Route::post('/news',[News::class,'store']);

@@ -17,6 +17,9 @@ class HomePage extends Controller
             $newsDetails->where('category_id', $request->query('searchCategory'));
         if($request->query('term'))
             $newsDetails->where('title', $request->query('term'));
+        if($request->query('searchBar'))
+            $newsDetails->where('title','LIKE',"%".$request->query('searchBar')."%");
+
 
       return view('home_page', [
         "newsDetails" => $newsDetails->get(),

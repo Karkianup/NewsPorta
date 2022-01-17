@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-         <a href="news/create"  class="btn btn-info" style="position:absolute;right:1%;font-weight:bold;font-size:23px;text-decoration:none;color:black">Post Article</a><br>
+         <a href="news/create"  class="btn btn-dark" style="position:absolute;right:1%;font-weight:bold;font-size:33px;text-decoration:none;color:WHITE">+</a><br>
 
          {{-- For search news using category --}}
          <form action="/" method="GET">
@@ -11,19 +11,13 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                 </select>
-                <input type="submit" value="submit" class="btn btn-primary">
+                <input type="submit" value="search" class="btn btn-primary">
          </form>
+         {{-- search using search field --}}
          <form action="/" method="GET">
-
-            </select>
-            <input type="submit" value="submit" class="btn btn-primary">
+              <input type="text" name="searchBar" placeholder="enter title">
+             <input type="submit" value="search" class="btn btn-primary">
      </form>
-         {{-- To view logged user article post --}}
-        <div class="searchLoggedUserArticleButton">
-            @if(auth()->check())
-               <a href="user/posts" type="button" class="btn btn-dark">My Posts</a>
-            @endif
-        </div>
 
          @if (session('message'))
               <div class="alert alert-primary" style="text-align:center">{{ session('message') }}</div>
