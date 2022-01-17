@@ -8,6 +8,7 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class News extends Controller
 {
@@ -116,6 +117,16 @@ class News extends Controller
         } else {
             return redirect('/')->with('message', 'You are not eligible to delete');
         }
+    }
+
+    public function myPosts()
+    {
+        $authPost=Auth::user()->newsDetails;
+         return view('auth_user_posts',[
+             "authPosts"=>$authPost,
+
+         ]);
+
     }
 
     // function category(){

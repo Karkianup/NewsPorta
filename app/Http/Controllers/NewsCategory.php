@@ -8,21 +8,22 @@ use App\Models\NewsDetail;
 
 class NewsCategory extends Controller
 {
-    function show(Request $req){
+    function category(Request $req){
             $newsArticle=NewsDetail::where('category_id',$req->searchCategory)->get();
             $category=Category::all();
-      if(isset($_POST["newsFilter"])){
+            // return $newsArticle;
 
               if(count($newsArticle)){
-            // return view('home_page',[
-            //   "newsArticles"=>$newsArticle,
-            //   "categories"=>$category,
-            // ]);
-            return $newsArticle;
-            }else{
-                return "nothing to display";
+            return view('home_page',[
+              "newsArticles"=>$newsArticle,
+              "categories"=>$category,
+                ]);
+            // return $newsArticle;
+            // }else{
+                //  return redirect()->back()->with('message','No news related this specific category');
 
-                  }            }
+                //   }
+               }
 }
     function showPublisherArticle(Request $req){
       if(isset($_POST["searchLoggedUserArticle"])){
