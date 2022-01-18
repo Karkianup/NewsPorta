@@ -1,19 +1,13 @@
 @extends('layouts.app')
 @section('content')
-
-
-
     @if (session('message'))
         <div class="alert alert-primary" style="text-align:center">{{ session('message') }}</div>
     @endif
-
     <div class="container">
         <div class="row">
             <div class="card-header" style="background-color:#5D5C61;border:none">
-                <a href="news/create" class="btn btn-dark"
-                    style="position:absolute;right:1%;font-weight:bold;font-size:23px;text-decoration:none;color:WHITE">+</a><br>
 
-                {{-- For search news using category --}}
+               {{-- For search news using category --}}
                 <form action="/" method="GET" class="searchCategory">
                     <select name="searchCategory" class="form-select">
                         <option selected disabled>filter</option>

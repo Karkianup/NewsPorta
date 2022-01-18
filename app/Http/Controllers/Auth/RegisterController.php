@@ -64,9 +64,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $request=request();
+        if($request->hasFile('image')){
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $fileName=time().'.'.$extension;
+            $file->move("userImage",$fileName);
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'image'=>$fileName,
             'password' => Hash::make($data['password']),
         ]);
     }

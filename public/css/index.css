@@ -5,11 +5,10 @@ body{
 }
 .addNews{
     position: absolute;
-    /* top:8vh; */
+    top:8vh;
     left:18%;
     /* font-size: 28px; */
-    padding:70px;
-
+    /* padding:70px;  */
 }
 /* from show_news.blade.php */
 /* .showNews{
@@ -36,4 +35,16 @@ body{
     position: absolute;
     top:11vh;
     left:14%;
+}
+.sidebar{
+    top:7vh;
+    /* position: relative; */
+    position: absolute;
+    left:0%;
+
+}
+.userProfile
+{
+position: absolute;
+left:45%;
 }
