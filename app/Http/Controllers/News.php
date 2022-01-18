@@ -118,21 +118,7 @@ class News extends Controller
 
     }
 
-    public function myPosts()
-    {
-        $authPost = Auth::user()->newsDetails;
-        if (count($authPost)) {
-            return view('auth_user_posts', [
-                "authPosts" => $authPost,
 
-            ]);
-        } else {
-            return redirect()->back()->with('message', 'You have no articles');
-            // return redirect('/user/posts')->with('message','hello');
-
-
-        }
-    }
 
     // function category(){
     //    $category=Category::all();

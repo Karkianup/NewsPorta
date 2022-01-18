@@ -23,17 +23,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/display/category',[NewsCategory::class,'category']);
 Route::get('/',[HomePage::class,'index']);
-Route::get('/user/posts',[News::class,'myPosts'])->name('posts')->middleware('auth');
-Route::get('/user/dashboard/create',[News::class,'create'])->middleware('auth');
 Route::post('/news',[News::class,'store'])->middleware('auth');
 Route::get('/news/{id}',[News::class,'show']);
 Route::get('/news/edit/{id}',[News::class,'edit'])->middleware('auth');
 Route::put('/news',[News::class,'update'])->middleware('auth');
 Route::get('/news/delete/{id}',[News::class,'destroy'])->middleware('auth');
 
-Route::get('/user/dashboard',[DashboardController::class,'dashboardView'])->middleware('auth');
+// Route::get('/user/dashboard',[DashboardController::class,'dashboardView'])->middleware('auth');
 
 Route::view('/sidebar','layouts.sidebar');
 Route::get('/user/profile',[DashboardController::class,'show'])->middleware('auth');
+Route::get('/user/dashboard/posts',[DashboardController::class,'myPosts'])->name('posts')->middleware('auth');
+Route::get('/user/dashboard/create',[News::class,'create'])->middleware('auth');
 
-Route::view('/index','index');
+// Route::view('/index','index');

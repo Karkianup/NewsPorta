@@ -1,7 +1,8 @@
-@extends('layouts.app')
-@section('content')
-    <div class="container">
+@extends('layouts.dashboard')
+@section('body')
+    <div class="container userArticle">
         <div class="row">
+            {{-- <div class="col-6"></div> --}}
             @foreach ($authPosts as $d)
 
                 <div class="col-6">

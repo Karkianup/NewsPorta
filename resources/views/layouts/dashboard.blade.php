@@ -50,10 +50,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/user/dashboard/posts" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                View your posts
+                View your Post
                 <i class="fas fa-angle-left right"></i>
                 {{-- <span class="badge badge-info right">6</span> --}}
               </p>
@@ -62,5 +62,5 @@
         </ul>
       </nav></div></aside>
 </div>
-@yield('contents')
+@yield('body')
 @endsection
