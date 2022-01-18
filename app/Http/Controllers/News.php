@@ -9,27 +9,16 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use PDO;
 
 class News extends Controller
 {
 
-    function index()
-    {
-        $newsDetails = NewsDetail::all();
-        $category=Category::all();
-
-        return view('home_page', [
-            "newsDetails" => $newsDetails,
-            "categories"=>$category
-        ]);
-    }
-
-
     function create()
     {
-        $category=Category::all();
-        return view('add_news',[
-           "categories"=>$category,
+        $category = Category::all();
+        return view('add_news', [
+            "categories" => $category,
 
         ]);
     }
@@ -40,8 +29,8 @@ class News extends Controller
             "title" => "required | string | max:255 | min:2",
             "post" => "required|max:17000",
             "image" => "required",
-            "category_id"=>"required",
-            ]);
+            "category_id" => "required",
+        ]);
 
         $newsDetail = NewsDetail::create($req->all());
         if ($req->hasFile('image')) {
@@ -59,10 +48,18 @@ class News extends Controller
     function show($id)
     {
         $newsDetail = NewsDetail::with('user')->find($id);
+        //  $newsCategory= $newsDetail->category_id;
+
+        $categoryNews=NewsDetail::latest()->take('3')->get();
+
+
         return view('show_news', [
-            'newsDetails' => $newsDetail
+            'newsDetails' => $newsDetail,
+            'categoryNews' => $categoryNews
+
 
         ]);
+
     }
 
     function edit($id)
@@ -108,25 +105,33 @@ class News extends Controller
     function destroy($id)
     {
 
-        $news = NewsDetail::find($id);
-        $publisher_id = $news->user_id;
-        $user_id = auth()->user()->id;
-        if ($publisher_id == $user_id) {
-            $news->delete();
+        $post = Auth::user()->newsDetails()->find($id);
+        if ($post) {
+            $post->delete();
             return redirect('/')->with('message', 'deleted successfully');
-        } else {
-            return redirect('/')->with('message', 'You are not eligible to delete');
-        }
+        } else
+            return redirect('/')->with('message', 'No post with given id found');
+        // $news = NewsDetail::find($id);
+        // $publisher_id = $news->user_id;
+        // $user_id = auth()->user()->id;
+
+
     }
 
     public function myPosts()
     {
-        $authPost=Auth::user()->newsDetails;
-         return view('auth_user_posts',[
-             "authPosts"=>$authPost,
+        $authPost = Auth::user()->newsDetails;
+        if (count($authPost)) {
+            return view('auth_user_posts', [
+                "authPosts" => $authPost,
 
-         ]);
+            ]);
+        } else {
+            return redirect()->back()->with('message', 'You have no articles');
+            // return redirect('/user/posts')->with('message','hello');
 
+
+        }
     }
 
     // function category(){

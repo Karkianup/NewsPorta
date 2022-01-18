@@ -1,8 +1,21 @@
-.addNews{
-  position: absolute;
-  left:22%;
+body{
+    overflow-x: hidden;
 
 }
+.addNews{
+    position: absolute;
+    /* top:8vh; */
+    left:18%;
+    /* font-size: 30px; */
+
+}
+/* from show_news.blade.php */
+/* .showNews{
+    overflow-x: hidden;
+    position: absolute;
+    left:9%;
+
+} */
 .searchLoggedUserArticleButton{
  position: absolute;
  left:45%;
