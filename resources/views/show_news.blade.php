@@ -22,8 +22,39 @@
                                 @endif
                             @endif
                         </div>
+                </div><br>
+                {{-- for user comments --}}
+                @error('comment') <div class="alert alert-warning">{{ "*".$message }}</div>@enderror
+                @if(auth()->check())
+                <form action="/comment" method="POST">
+                    @csrf
+                    <input type="text" name="news_detail_id" value="{{ $newsDetails->id }}" hidden>
+                    <textarea name="comment" rows="6" cols="1" class="form-control" placeholder="place your comments here"></textarea>
+                     <input type="submit" value="comment" class="btn btn-primary">
+                </form><br>
+                @else
+                   <div class="card">
+                       <div class="card-header">
+                            <a href="{{ route('login') }}" style="font-size:28px">Click here to Login</a>
+                        </div>
+                   </div>
+                @endif<br>
+                <div class="card">
+                    <div class="card-header" style="background-color:blue;color:white">
+                        Comments
+                    </div>
+                    @foreach ($comments as $c)
+                        <div class="card-body">
+                            <span style="font-weight:bold">{{ $c->user->name }}&nbsp;{{$c->created_at->diffForHumans()}}</span><br>
+                                                            {{ $c->comment }}
+                        </div><hr>
+                    @endforeach
+
                 </div>
+
             </div>
+
+
             <div class="col-1"> </div>
             <div class="col-3">
                 <div class="card-header" style="background-color:black;color:white;text-align:center">

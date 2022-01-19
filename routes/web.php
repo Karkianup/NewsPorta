@@ -3,10 +3,12 @@
 use App\Http\Controllers\HomePage;
 use App\Http\Controllers\News;
 use App\Http\Controllers\NewsCategory;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Relations;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +39,4 @@ Route::get('/user/dashboard/posts',[DashboardController::class,'myPosts'])->name
 Route::get('/user/dashboard/create',[News::class,'create'])->middleware('auth');
 
 // Route::view('/index','index');
+Route::post('/comment',[CommentController::class,'store']);

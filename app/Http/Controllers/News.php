@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\NewsDetail;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -48,14 +49,16 @@ class News extends Controller
     function show($id)
     {
         $newsDetail = NewsDetail::with('user')->find($id);
-        //  $newsCategory= $newsDetail->category_id;
+        $comment= Comment::with('newsDetail','user')->where('news_detail_id',$id)->get();
+
 
         $categoryNews=NewsDetail::latest()->take('3')->get();
 
 
         return view('show_news', [
             'newsDetails' => $newsDetail,
-            'categoryNews' => $categoryNews
+            'categoryNews' => $categoryNews,
+            'comments'=>$comment
 
 
         ]);
@@ -108,9 +111,9 @@ class News extends Controller
         $post = Auth::user()->newsDetails()->find($id);
         if ($post) {
             $post->delete();
-            return redirect('/')->with('message', 'deleted successfully');
+            return redirect('/user/dashboard/posts')->with('message', 'Dphpeleted successfully');
         } else
-            return redirect('/')->with('message', 'No post with given id found');
+            return redirect('/user/dashboard/posts')->with('message', 'No post with given id found');
         // $news = NewsDetail::find($id);
         // $publisher_id = $news->user_id;
         // $user_id = auth()->user()->id;

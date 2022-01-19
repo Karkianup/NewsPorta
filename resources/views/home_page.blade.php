@@ -25,7 +25,7 @@
                 </form><br><br>
                </div>
 
-        </div>
+        </div><br><br>
         <div class="row">
             @if ($newsDetails->count())
                 @foreach ($newsDetails as $d)
