@@ -35,12 +35,12 @@
                 @else
                    <div class="card">
                        <div class="card-header">
-                            <a href="{{ route('login') }}" style="font-size:28px">Click here to Login</a>
+                            <a href="{{ route('login') }}" style="font-size:28px;text-decoration:none;">Click here to Login</a>
                         </div>
                    </div>
-                @endif<br>
+                @endif <br>
                 <div class="card">
-                    <div class="card-header" style="background-color:blue;color:white">
+                    <div class="card-header" style="background-color:blue;color:white;">
                         Comments
                     </div>
                     @foreach ($comments as $c)
