@@ -17,6 +17,11 @@ class HomePage extends Controller
             $newsDetails->where('category_id', $request->query('searchCategory'));
         if($request->query('searchBar'))
             $newsDetails->where('title','LIKE',"%".$request->query('searchBar')."%")->orWhere('post','LIKE',"%".$request->query('searchBar')."%");
+        if($request->query('search'))
+         if($request->query('search')=='1')
+            $newsDetails->latest();
+          else
+            $newsDetails->oldest();
 
 
       return view('home_page', [

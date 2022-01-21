@@ -6,7 +6,6 @@
     <div class="container">
         <div class="row">
             <div class="card-header" style="background-color:#5D5C61;border:none">
-
                {{-- For search news using category --}}
                 <form action="/" method="GET" class="searchCategory">
                     <select name="searchCategory" class="form-select">
@@ -22,8 +21,19 @@
                 <form action="/" method="GET" class="searchBar">
                     <input type="text" name="searchBar" placeholder="enter title" class="form-control">
                     <input type="submit" value="search" class="btn btn-dark">
-                </form><br><br>
-               </div>
+                </form>
+               </div><br><br>
+
+                <form class="latestSearch">
+                    <select name="search">
+                        <option selected disabled>search</option>
+                        <option value="1">Latest</option>
+                        <option value="2">Oldest</option>
+
+                    </select>
+                    <input type="submit" value="search" class="btn btn-dark">
+                </form>
+
 
         </div><br><br>
         <div class="row">

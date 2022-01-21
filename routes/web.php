@@ -33,10 +33,13 @@ Route::get('/news/delete/{id}',[News::class,'destroy'])->middleware('auth');
 
 // Route::get('/user/dashboard',[DashboardController::class,'dashboardView'])->middleware('auth');
 
-Route::view('/sidebar','layouts.sidebar');
+// Route::view('/sidebar','layouts.sidebar');
+Route::group(['prefix'=>'/user/dashboard'],function(){
+    Route::get('/posts',[DashboardController::class,'myPosts'])->name('posts')->middleware('auth');
+    Route::get('/create',[News::class,'create'])->middleware('auth');
+});
 Route::get('/user/profile',[DashboardController::class,'show'])->middleware('auth');
-Route::get('/user/dashboard/posts',[DashboardController::class,'myPosts'])->name('posts')->middleware('auth');
-Route::get('/user/dashboard/create',[News::class,'create'])->middleware('auth');
+
 
 // Route::view('/index','index');
 Route::post('/comment',[CommentController::class,'store']);
