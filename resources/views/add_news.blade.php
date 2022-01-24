@@ -18,14 +18,14 @@
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select><br>
-                            @error('title')<div class="alert-danger">{{ "*".$message }}</div> @enderror
+                            @error('title')<div class="alert-warning">{{ "*".$message }}</div> @enderror
                             <input type="text" name="title" placeholder="enter title of your news" class="form-control" value="{{ old('title') }}"><br>
 
-                            @error('image')<div class="alert-danger">{{ "*".$message }}</div> @enderror
+                            @error('image')<div class="alert-warning">{{ "*".$message }}</div> @enderror
                             <input type="file" name="image" placeholder="enter title of your news" class="form-control"><br>
 
-                            @error('post')<div class="alert-danger">{{ "*".$message }}</div> @enderror
-                            <textarea name="post" rows="9" cols="30" class="form-control" placeholder="Enter article"></textarea><br>
+                            @error('post')<div class="alert-warning">{{ "*".$message }}</div> @enderror
+                            <textarea name="post" rows="9" cols="30" class="form-control" placeholder="Enter article" value="{{ old('post') }}"></textarea><br>
                             <input type="submit" value="Post" class="btn btn-success">
 
                         </div>

@@ -28,10 +28,19 @@ class News extends Controller
     {
         $req->validate([
             "title" => "required | string | max:255 | min:2",
-            "post" => "required|max:17000",
+            "post" => "required|max:1",
             "image" => "required",
             "category_id" => "required",
-        ]);
+        ],
+        [
+            "title.required"=>"please enter title of your article",
+            "post.required"=>"please enter the article",
+            "image.required"=>"Enter the required image for you article",
+            "post.max"=>"Article must not be greater than 1 character",
+
+        ]
+
+    );
 
         $newsDetail = NewsDetail::create($req->all());
         if ($req->hasFile('image')) {
