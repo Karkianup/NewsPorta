@@ -14,7 +14,7 @@
                 <div class="card">
                         <div class="card-body">
                             <img src="{{asset('images/'.$newsDetails->image)}}" width="100%" height="400px"><br><br>
-                            <span style="color:black;font-size:22px">{{ $newsDetails->post }} </span><br><br>
+                            <span style="color:black;font-size:22px">{!! nl2br($newsDetails->post) !!} </span><br><br>
                             @if(auth()->check())
                                 @if(auth()->user()->id==$newsDetails->user_id)
                                     <a href={{"/news/delete/".$newsDetails->id}} style="position: absolute;left:70%;font-size:22px;text-decoration:none" class="btn btn-danger">Delete your Post</a>
@@ -63,10 +63,13 @@
                 <div class="card">
                     @foreach ($categoryNews as $cn)
                         <div class="card-body">
-                            <a href={{ "/news/".$cn->id }} style="text-decoration:none;color:black">
-                                <h5> {{ $cn->title }}</h5>
+                            <a href={{ "/news/".$cn->id }} style="text-decoration:none;color:black">                                <h5> {{ $cn->title }}</h5>
                                 <img src="{{ asset('images/'.$cn->image) }}" style="width:100%;height:100%"><br>
-                                {{ Str::limit($cn->post,70) }}
+                                  @php
+                                    //  echo $a= nl2br_limit($cn->post,20);
+
+                                  @endphp
+                                  {!! Str::limit(strip_tags($cn->post), 90) !!}
                         </div><hr>
                             </a>
                     @endforeach

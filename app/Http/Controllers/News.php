@@ -28,7 +28,7 @@ class News extends Controller
     {
         $req->validate([
             "title" => "required | string | max:255 | min:2",
-            "post" => "required|max:1",
+            "post" => "required|max:14000",
             "image" => "required",
             "category_id" => "required",
         ],
@@ -36,7 +36,7 @@ class News extends Controller
             "title.required"=>"please enter title of your article",
             "post.required"=>"please enter the article",
             "image.required"=>"Enter the required image for you article",
-            "post.max"=>"Article must not be greater than 1 character",
+            "post.max"=>"Article must not be greater than 4000 character",
 
         ]
 
@@ -59,7 +59,6 @@ class News extends Controller
     {
         $newsDetail = NewsDetail::with('user')->find($id);
         $comment= Comment::with('newsDetail','user')->where('news_detail_id',$id)->get();
-
 
         $categoryNews=NewsDetail::latest()->take('3')->get();
 

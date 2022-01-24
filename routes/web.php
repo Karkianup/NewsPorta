@@ -43,3 +43,5 @@ Route::get('/user/profile',[DashboardController::class,'show'])->middleware('aut
 
 // Route::view('/index','index');
 Route::post('/comment',[CommentController::class,'store']);
+
+Route::view('/rich/text','layouts.richtexteditor');

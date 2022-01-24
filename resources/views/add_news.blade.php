@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+
 @section('body')
 
     <form action="/news" method="POST" enctype="multipart/form-data">
@@ -26,6 +27,8 @@
 
                             @error('post')<div class="alert-warning">{{ "*".$message }}</div> @enderror
                             <textarea name="post" rows="9" cols="30" class="form-control" placeholder="Enter article" value="{{ old('post') }}"></textarea><br>
+                            {{-- <div id="editor">
+                            </div> --}}
                             <input type="submit" value="Post" class="btn btn-success">
 
                         </div>
@@ -36,4 +39,18 @@
 
     </form>
 
+
+    @push('scripts')
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
+    {{-- <script src="{{ asset('ckeditor_4/ckeditor.js')}}"></script> --}}
+    {{-- <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script> --}}
+    {{-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> --}}
+    @endpush
 @endsection
+
+
+
+
+

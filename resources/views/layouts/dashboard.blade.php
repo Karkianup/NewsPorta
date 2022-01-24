@@ -4,7 +4,6 @@
 <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminlte.min.css.map') }}" rel="stylesheet">
-
 <div class="sidebar">
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -49,6 +48,7 @@
               </p>
             </a>
           </li>
+
           <li class="nav-item">
             <a href="/user/dashboard/posts" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

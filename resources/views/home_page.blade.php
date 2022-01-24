@@ -47,7 +47,7 @@
                                     <h3 style="color:white;background-color:black;padding:20px">{{ $d->title }}</h3><hr>
                                     <img src={{ 'images/' . $d->image }} width="100%" height="300px">
                                     <span style="font-weight:bold">Published by:</span><span style="color:red">{{ $d->user->name }}</span><br>
-                                    {{ Str::limit($d->post,200) }}
+                                    {!! Str::limit(strip_tags($d->post,200)) !!}
 
                                 </a>
                             </div>
