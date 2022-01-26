@@ -19,8 +19,8 @@
                 </div>
 
             @endforeach --}}
+            @if($authPosts->count())
             <div class="col-10">
-                <a href="/restore/delete">restore</a>
                 @if(session('message'))<div class="alert alert-danger">{{ session('message') }}</div>@endif
                 <table border="1px" class="table table-bordered table-hover">
                     <tr style="color:white;background-color:black">
@@ -44,6 +44,9 @@
 
                         @endforeach
                 </table>
+                @else
+                   <div class="alert alert-warning">You have no posts <a href="/user/dashboard/create">click here to post</a></div>
+                @endif
             </div>
 
         </div>

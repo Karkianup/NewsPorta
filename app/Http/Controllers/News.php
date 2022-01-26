@@ -129,19 +129,11 @@ class News extends Controller
 
 
     }
-      function restoreDeletedData(){
-
-         Auth::user()->newsDetails()->withTrashed()
+      function restoreDeletedData($id){
+           Auth::user()->newsDetails()->withTrashed()
+                ->where('id',$id)
                ->restore();
                return redirect()->back();
+
       }
-
-    // function category(){
-    //    $category=Category::all();
-    //     return view('add_news',[
-    //          'category'=>$category,
-
-    //     ]);
-
-    // }
 }

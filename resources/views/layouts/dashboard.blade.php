@@ -59,6 +59,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/view/deleted/items" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                  View deleted items
+              </p>
+            </a>
+          </li>
         </ul>
       </nav></div></aside>
 </div>

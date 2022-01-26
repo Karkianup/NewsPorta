@@ -64,3 +64,10 @@ left:45%;
     top:11vh;
     left:74%;
 }
+/* from view_deleted_items */
+.viewDeletedItems{
+    position:absolute;
+    left:25%;
+
+
+}

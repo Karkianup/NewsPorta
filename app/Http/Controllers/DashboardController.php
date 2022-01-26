@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewsDetail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -22,18 +23,21 @@ class DashboardController extends Controller
     public function myPosts()
     {
         $authPost = Auth::user()->newsDetails;
-        if (count($authPost)) {
+
             return view('auth_user_posts', [
                 "authPosts" => $authPost,
 
             ]);
-        } else {
-            return redirect('user/dashboard/posts')->with('message', 'You have no articles');
-            // return redirect('/user/posts')->with('message','hello');
 
 
-        }
     }
+    public function viewDeletedItems(){
+        //  return NewsDetail::where('id',4)->first();
+         $deletedItems=Auth::user()->newsDetails()->onlyTrashed()->get();
 
+         return view('view_deleted_items',[
+             'deletedItems' => $deletedItems,
+         ]);
 
+    }
 }
