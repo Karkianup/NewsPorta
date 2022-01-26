@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
             ]);
         } else {
-            return redirect()->back()->with('message', 'You have no articles');
+            return redirect('user/dashboard/posts')->with('message', 'You have no articles');
             // return redirect('/user/posts')->with('message','hello');
 
 

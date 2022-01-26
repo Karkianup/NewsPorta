@@ -19,9 +19,10 @@
                 </div>
 
             @endforeach --}}
-            <div class="col-12">
+            <div class="col-10">
+                <a href="/restore/delete">restore</a>
                 @if(session('message'))<div class="alert alert-danger">{{ session('message') }}</div>@endif
-                <table border="3px" class="table table-bordered table-hover">
+                <table border="1px" class="table table-bordered table-hover">
                     <tr style="color:white;background-color:black">
                         <th>Title</th>
                         <th>Image</th>
@@ -34,7 +35,7 @@
                     <tr>
                         @foreach ($authPosts as $d)
                             <td><b>{{ $d->title }}</b></td>
-                            <td><img src="{{asset('images/'.$d->image) }}" width="222px"></td>
+                            <td><img src="{{asset('images/'.$d->image) }}" width="200px"></td>
                             <td>{{ Str::limit($d->post,50) }}</td>
                             <td> {{ date_format($d->created_at,'D M Y') }} </td>
                             <td><a href={{"/news/edit/".$d->id}} class="btn btn-primary">Update</a></td>

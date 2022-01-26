@@ -45,3 +45,5 @@ Route::get('/user/profile',[DashboardController::class,'show'])->middleware('aut
 Route::post('/comment',[CommentController::class,'store']);
 
 Route::view('/rich/text','layouts.richtexteditor');
+
+Route::get('/restore/delete',[News::class,'restoreDeletedData']);

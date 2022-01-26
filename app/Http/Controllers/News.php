@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use PDO;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class News extends Controller
 {
@@ -119,7 +120,7 @@ class News extends Controller
         $post = Auth::user()->newsDetails()->find($id);
         if ($post) {
             $post->delete();
-            return redirect('/user/dashboard/posts')->with('message', 'Dphpeleted successfully');
+            return redirect('/user/dashboard/posts')->with('message', 'Deleted successfully');
         } else
             return redirect('/user/dashboard/posts')->with('message', 'No post with given id found');
         // $news = NewsDetail::find($id);
@@ -128,8 +129,12 @@ class News extends Controller
 
 
     }
+      function restoreDeletedData(){
 
-
+         Auth::user()->newsDetails()->withTrashed()
+               ->restore();
+               return redirect()->back();
+      }
 
     // function category(){
     //    $category=Category::all();

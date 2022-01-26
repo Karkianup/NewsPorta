@@ -54,7 +54,8 @@ left:45%;
 .userArticle
 {
     position: absolute;
-    left:17%;
+    /* padding:222px; */
+    left:20%;
 
 }
 /* from home_page.blade.php */
