@@ -8,7 +8,8 @@
                     <span style="color:white">publisher:{{$newsDetails->user->name}}<br>
                                  {{-- {{$newsDetails->created_at->diffForHumans()}} --}}
 
-                                 {{ date_format($newsDetails->created_at,'D M Y') }}</span>
+                                 {{ date_format($newsDetails->created_at,'D M Y') }}</span><br>
+                                 <span style="color:white">Total-views:{{ $newsDetails->views_count }}</span>
 
                 {{-- </div> --}}
                 <div class="card">

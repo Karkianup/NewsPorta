@@ -53,6 +53,7 @@ class News extends Controller
             $newsDetail->user_id = auth()->user()->id;
             $newsDetail->save();
         }
+
         return redirect()->back()->with('message', 'Post successfully');
     }
 
@@ -62,6 +63,12 @@ class News extends Controller
         $comment= Comment::with('newsDetail','user')->where('news_detail_id',$id)->get();
 
         $categoryNews=NewsDetail::latest()->take('3')->get();
+        if(Auth::check()){
+            NewsDetail::find($id)->increment('views_count');
+        }
+        // Auth::user()->newsDetails->find($id)->increment('views_count');
+        // return $newsDetail->views_count;
+
 
 
         return view('show_news', [
@@ -136,4 +143,8 @@ class News extends Controller
                return redirect()->back();
 
       }
+
+    //   function handle(Post $post){
+
+    //   }
 }
