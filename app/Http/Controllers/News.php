@@ -90,9 +90,11 @@ class News extends Controller
 
         $publisher_id = $newsDetails->user_id;
         $user_id = auth()->user()->id;
+        $categories=Category::pluck('name','id');
         if ($user_id == $publisher_id) {
             return view('edit_news', [
-                "newsDetails" => $newsDetails
+                "newsDetails" => $newsDetails,
+                "categories" => $categories,
             ]);
         } else {
             return redirect('/')->with('message', 'You are not eligible to edit');
@@ -102,7 +104,10 @@ class News extends Controller
 
     function update(Request $req)
     {
-        $newsUpdate = NewsDetail::find($req->id)->update($req->all());
+        // dd($req->all());
+        $newsUpdate = NewsDetail::find($req->id);
+        //  return $req->all();
+        $newsUpdate->update($req->all());
 
 
         if ($req->hasFile('image')) {
@@ -115,7 +120,8 @@ class News extends Controller
             $fileName = time() . '.' . $extension;
             $file->move('images/', $fileName);
             $newsUpdate->image = $fileName;
-            $newsUpdate->update();
+            $newsUpdate->save();
+
         }
 
         return redirect()->back()->with('message', 'Your article have been updated successfully');
