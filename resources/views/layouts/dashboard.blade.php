@@ -4,6 +4,9 @@
 <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminlte.min.css.map') }}" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <div class="sidebar">
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->

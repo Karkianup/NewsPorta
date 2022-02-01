@@ -9,7 +9,13 @@
                                  {{-- {{$newsDetails->created_at->diffForHumans()}} --}}
 
                                  {{ date_format($newsDetails->created_at,'D M Y') }}</span><br>
-                                 <span style="color:white">Total-views:{{ $newsDetails->views_count }}</span>
+                                 <span style="color:white">Total-views:{{ $newsDetails->views_count }}</span><br>
+                                <span style="color:white">Tags:
+                                                @foreach ($newsDetails->tags as $tag)
+                                                        <a href={{ "/tags/news/".$tag->id }} style="color:Yellow"> {{ $tag->title }}</a><br>
+                                                @endforeach
+                                </span>
+                    </a>
 
                 {{-- </div> --}}
                 <div class="card">

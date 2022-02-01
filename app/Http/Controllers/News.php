@@ -6,54 +6,63 @@ use App\Models\NewsDetail;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
-
+use App\Models\Tag;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use PDO;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-
+// use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Illuminate\Database\Eloquent\Builder;
 class News extends Controller
 {
 
     function create()
     {
         $category = Category::all();
+        $tags=Tag::all();
+
         return view('add_news', [
             "categories" => $category,
+            "tags" => $tags,
 
         ]);
     }
 
     function store(Request $req)
     {
-        $req->validate([
-            "title" => "required | string | max:255 | min:2",
-            "post" => "required|max:14000",
-            "image" => "required",
-            "category_id" => "required",
-        ],
-        [
-            "title.required"=>"please enter title of your article",
-            "post.required"=>"please enter the article",
-            "image.required"=>"Enter the required image for you article",
-            "post.max"=>"Article must not be greater than 4000 character",
+    //     $req->validate([
+    //         "title" => "required | string | max:255 | min:2",
+    //         "post" => "required|max:14000",
+    //         "image" => "required",
+    //         "category_id" => "required",
+    //     ],
+    //     [
+    //         "title.required"=>"please enter title of your article",
+    //         "post.required"=>"please enter the article",
+    //         "image.required"=>"Enter the required image for you article",
+    //         "post.max"=>"Article must not be greater than 4000 character",
 
-        ]
+    //     ]
 
-    );
-
+    // );
         $newsDetail = NewsDetail::create($req->all());
+        for($i=0;$i<count($req->tags);$i++){
+            $newsDetail->tags()->attach(Tag::firstOrCreate(
+             [   'title'=>$req->tags[$i]],
+              [  'slug'=>Str::slug($req->tags[$i])],
+              ));
+            }
+
         if ($req->hasFile('image')) {
             $file = $req->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $extension;
             $file->move('images/', $fileName);
             $newsDetail->image = $fileName;
-            $newsDetail->user_id = auth()->user()->id;
-            $newsDetail->save();
         }
-
+        $newsDetail->user_id = auth()->user()->id;
+        $newsDetail->save();
         return redirect()->back()->with('message', 'Post successfully');
     }
 
@@ -61,7 +70,6 @@ class News extends Controller
     {
         $newsDetail = NewsDetail::with('user')->find($id);
         $comment= Comment::with('newsDetail','user')->where('news_detail_id',$id)->get();
-
         $categoryNews=NewsDetail::latest()->take('3')->get();
         if(Auth::check()){
             NewsDetail::find($id)->increment('views_count');

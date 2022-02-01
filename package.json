@@ -24,6 +24,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^31.1.0"
+        "2": "^3.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+        "jquery": "^3.6.0",
+        "select": "^1.1.2",
+        "select2": "^4.1.0-rc.0"
     }
 }

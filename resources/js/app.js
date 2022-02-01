@@ -30,3 +30,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+$('#tags').select2({
+    tags: true,
+    tokenSeparators: [','],
+    placeholder: "Add your tags here",
+    selectOnClose: true,
+    // closeOnSelect: false
+});

@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Relations;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,6 @@ Route::get('/view/deleted/items',[DashboardController::class,'viewDeletedItems']
 
 
 Route::get('/restore/deleted/item/{id}',[News::class,'restoreDeletedData']);
+
+Route::get('/tags/news/{id}',[TagController::class,'showTagItem']);
 
