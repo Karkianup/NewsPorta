@@ -31,21 +31,21 @@ class News extends Controller
 
     function store(Request $req)
     {
-    //     $req->validate([
-    //         "title" => "required | string | max:255 | min:2",
-    //         "post" => "required|max:14000",
-    //         "image" => "required",
-    //         "category_id" => "required",
-    //     ],
-    //     [
-    //         "title.required"=>"please enter title of your article",
-    //         "post.required"=>"please enter the article",
-    //         "image.required"=>"Enter the required image for you article",
-    //         "post.max"=>"Article must not be greater than 4000 character",
+        $req->validate([
+            "title" => "required | string | max:255 | min:2",
+            "post" => "required|max:14000",
+            "image" => "required",
+            "category_id" => "required",
+        ],
+        [
+            "title.required"=>"please enter title of your article",
+            "post.required"=>"please enter the article",
+            "image.required"=>"Enter the required image for you article",
+            "post.max"=>"Article must not be greater than 4000 character",
 
-    //     ]
+        ]
 
-    // );
+    );
         $newsDetail = NewsDetail::create($req->all());
         for($i=0;$i<count($req->tags);$i++){
             $newsDetail->tags()->attach(Tag::firstOrCreate(

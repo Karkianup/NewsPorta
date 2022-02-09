@@ -70,6 +70,22 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/user/dashboard/messages" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                  Messages
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/user/dashboard/favourite" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                    Favourite
+              </p>
+            </a>
+          </li>
         </ul>
       </nav></div></aside>
 </div>

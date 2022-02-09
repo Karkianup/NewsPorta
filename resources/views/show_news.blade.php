@@ -10,14 +10,32 @@
 
                                  {{ date_format($newsDetails->created_at,'D M Y') }}</span><br>
                                  <span style="color:white">Total-views:{{ $newsDetails->views_count }}</span><br>
-                                <span style="color:white">Tags:
-                                                @foreach ($newsDetails->tags as $tag)
-                                                        <a href={{ "/tags/news/".$tag->id }} style="color:Yellow"> {{ $tag->title }}</a><br>
-                                                @endforeach
-                                </span>
-                    </a>
+                                 @if($newsDetails->tags->count())
 
-                {{-- </div> --}}
+                                        <span style="color:white">Tags:
+                                                    @foreach ($newsDetails->tags as $tag)
+                                                            <a href={{ "/tags/news/".$tag->id }} style="color:Yellow"> #{{ $tag->title }}</a>&nbsp;&nbsp;&nbsp;
+                                                    @endforeach
+                                                            </a>
+
+                                        </span>
+                                @endif<br>
+
+                                {{-- Favourite --}}
+                                @if(auth()->check())
+                                    <form action="/favorite/news" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="news_detail_id" value={{ $newsDetails->id }}>
+                                        <input type="submit" value="favourite" class="btn btn-outline-danger">
+                                    </form>
+                                @endif
+{{--
+
+                                @if(auth()->check())
+                                    @if(auth()->user()->id != $newsDetails->user_id)
+                                        <a href={{"/show/message/".$newsDetails->id}} class="btn btn-primary">Messages</a><br><br>
+                                    @endif
+                                @endif --}}
                 <div class="card">
                         <div class="card-body">
                             <img src="{{asset('images/'.$newsDetails->image)}}" width="100%" height="400px"><br><br>
@@ -50,12 +68,14 @@
                     <div class="card-header" style="background-color:blue;color:white;">
                         Comments
                     </div>
-                    @foreach ($comments as $c)
-                        <div class="card-body">
-                            <span style="font-weight:bold">{{ $c->user->name }}&nbsp;{{$c->created_at->diffForHumans()}}</span><br>
-                                                            {{ $c->comment }}
-                        </div><hr>
-                    @endforeach
+                    @if($comments->count())
+                        @foreach ($comments as $c)
+                            <div class="card-body">
+                                <span style="font-weight:bold">{{ $c->user->name }}&nbsp;{{$c->created_at->diffForHumans()}}</span><br>
+                                                                {{ $c->comment }}
+                            </div><hr>
+                        @endforeach
+                    @endif
 
                 </div>
 

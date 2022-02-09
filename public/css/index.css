@@ -71,3 +71,30 @@ left:45%;
 
 
 }
+/* from messages/index.blade.php */
+.messageIndex{
+    position: absolute;
+    left:33%;
+
+}
+.messageIndex a
+{
+color:black;
+}
+.messageIndex a:hover
+{
+    box-shadow: 0px 0px 18px 0px black;
+}
+/* from messages/show_message.blade.php */
+.showMessage
+{
+position:absolute;
+left:45%;
+top:555px
+}
+/* from favourite/favourite.blade.php */
+.favourite
+{
+    position:absolute;
+    left:25%;
+}

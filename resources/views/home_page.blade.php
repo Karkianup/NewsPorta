@@ -53,7 +53,6 @@
                             </div>
                         </div>
                     </div>
-
                 @endforeach
             @else
                 <div class="alert alert-warning"> No Posts found with matching query</div>

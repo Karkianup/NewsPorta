@@ -5,6 +5,8 @@ use App\Http\Controllers\News;
 use App\Http\Controllers\NewsCategory;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Relations;
@@ -35,9 +37,12 @@ Route::get('/news/delete/{id}',[News::class,'destroy'])->middleware('auth');
 // Route::get('/user/dashboard',[DashboardController::class,'dashboardView'])->middleware('auth');
 
 // Route::view('/sidebar','layouts.sidebar');
-Route::group(['prefix'=>'/user/dashboard'],function(){
-    Route::get('/posts',[DashboardController::class,'myPosts'])->name('posts')->middleware('auth');
-    Route::get('/create',[News::class,'create'])->middleware('auth');
+Route::group(['prefix'=>'/user/dashboard','middleware'=>'auth'],function(){
+    Route::get('/posts',[DashboardController::class,'myPosts'])->name('posts');
+    Route::get('/create',[News::class,'create']);
+    Route::get('/messages',[MessageController::class,'index']);
+    Route::get('/favourite',[FavouriteController::class,'index']);
+
 });
 Route::get('/user/profile',[DashboardController::class,'show'])->middleware('auth');
 
@@ -53,3 +58,6 @@ Route::get('/restore/deleted/item/{id}',[News::class,'restoreDeletedData']);
 
 Route::get('/tags/news/{id}',[TagController::class,'showTagItem']);
 
+Route::get('/show/message/{id}',[MessageController::class,'show']);
+
+Route::post('/favorite/news',[FavouriteController::class,'store']);
